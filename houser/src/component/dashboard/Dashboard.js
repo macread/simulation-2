@@ -42,7 +42,7 @@ class Dashboard extends Component {
                         />
                     ))}
                 <hr />
-                <Link to={'/wizard'}><button>Add New Property</button></Link>
+                <Link to={'/wizard/step1'}><button>Add New Property</button></Link>
             </div> 
         )
     }
