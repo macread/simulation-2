@@ -14,7 +14,7 @@ massive(process.env.CONNECTION_STRING).then(connection => {
     app.set('db', connection);
   })
 
-//   app.get('/api/inventory',controller.inventory);
+app.get('/api/houses',controller.houses);
 
 //   app.get('/api/product/:id',controller.getProduct);
 
