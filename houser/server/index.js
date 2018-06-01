@@ -10,9 +10,9 @@ app.use(bodyParser.json());
 
 const port = 3030;
 
-// massive(process.env.CONNECTION_STRING).then(connection => {
-//     app.set('db', connection);
-//   })
+massive(process.env.CONNECTION_STRING).then(connection => {
+    app.set('db', connection);
+  })
 
 //   app.get('/api/inventory',controller.inventory);
 
