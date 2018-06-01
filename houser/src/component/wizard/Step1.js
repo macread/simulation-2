@@ -1,44 +1,58 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { addHouse } from '../../ducks/reducer';
 
 class Step1 extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
             
-            this.state = {
-                name: '',
-                address: '',
-                city: '',
-                state: '',
-                zip: '',
-                toDashboard: false
-            }
-    
+        this.state = {
+            name: '',
+            address: '',
+            city: '',
+            st: '',
+            zip: ''
         }
     
-        updateLocationName(val){
-            this.setState({ name: val })
-        }
+        this.addHouse = this.addHouse.bind(this);
+
+    }
     
-        updateAddress(val){
-            this.setState({ address: val })
-        }
-    
-        updateCity(val){
-            this.setState({ city: val })
-        }
-    
-        updateState(val){
-            this.setState({ state: val })
-        }
-    
-        updateZipCode(val){
-            this.setState({ zip: val })
-        }
+    updateLocationName(val){
+        this.setState({ name: val })
+    }
+
+    updateAddress(val){
+        this.setState({ address: val })
+    }
+
+    updateCity(val){
+        this.setState({ city: val })
+    }
+
+    updateState(val){
+        this.setState({ state: val })
+    }
+
+    updateZipCode(val){
+        this.setState({ zip: val })
+    }
+
+    addHouse(){
+        let {name, address, city, st, zip} = this.state;
+        this.props.addHouse({
+            name: name,
+            address: address,
+            city: city,
+            st: st,
+            zip: zip
+        });
+    }
+
 
     render() {
-        console.log(this.props)
+        console.log('this.props',this.props)
         return (
             <div className='Step1'>
                 <p>Location Name:</p><input type='' className='' onChange={ ( e ) => this.updateLocationName( e.target.value ) }/>
@@ -52,7 +66,7 @@ class Step1 extends Component {
                 <p>ZIP Code:</p><input type='' className='' onChange={ ( e ) => this.updateZipCode( e.target.value ) }/>
                 
                 <hr />
-                <Link to={'/wizard/step2'}><button>Next Step</button></Link>
+                <Link to={'/wizard/step2'}><button onClick={()=>this.addHouse()}>Next Step</button></Link>
                 
             </div> 
         )
@@ -60,13 +74,14 @@ class Step1 extends Component {
 }
 
 function mapStateToProps(state){
+    console.log(state);
     return {
         name: state.name,
         address: state.address,
         city: state.city,
-        state: state.state,
+        st: state.st,
         zip: state.zip
     }
 }
 
-export default connect(mapStateToProps)(Step1)
+export default connect(mapStateToProps, { addHouse })(Step1)

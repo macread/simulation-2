@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default function House(props) {
   return (
     <div className="House">
@@ -13,7 +12,7 @@ export default function House(props) {
           <p>Image URL: {props.imgURL}</p>
           <p>Mortgage: {props.mortgage}</p>
           <p>Rent: {props.rent}</p>
-          <button>Delete</button>
+          <button onClick={()=> props.deleteHouse(props.id)}>Delete</button>
           <hr />
     </div> 
   )

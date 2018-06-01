@@ -18,11 +18,12 @@ app.get('/api/houses',controller.houses);
 
 app.post('/api/house',controller.addHouse);
 
+app.delete(`/api/house/:id`,controller.deleteHouse);
+
 //   app.get('/api/product/:id',controller.getProduct);
 
 //   app.put('/api/product/:id',controller.updateProduct);
 
-//   app.delete(`/api/product/:id`,controller.delete);
 
 
 app.listen( port, () => { console.log(`Server listening on port ${port}`); })

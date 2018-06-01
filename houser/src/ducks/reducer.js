@@ -2,31 +2,34 @@ const initialState = {
     name: 'Default House',
     address: '1 Default Street',
     city: 'Default City',
-    state: 'DE',
+    st: 'DE',
     zip: '12345',
     imgURL: 'default URL',
     mortgage: 750,
     rent: 1250
 }
 
-// const  = '';
+const ADD_HOUSE = 'ADD_HOUSE';
 
 export default function reducer(state = initialState, action ) {
 
+    console.log(action.type,action.payload)
     switch (action.type){
 
-        // case : 
-        //     return Object.assign({}, state, {: })
+        case ADD_HOUSE: 
+            let {name, address, city, st, zip } = action.payload;
+            return Object.assign({}, state, {name: name, address: address, city: city, st: st, zip: zip})
 
         default:
-        return state;
+            return state;
     }
 
 }
 
-// export function (){
-//     return {
-//         type: ,
-//         payload: 
-//     }
-// }
+export function addHouse(house){
+    console.log("hit")
+    return {
+        type: ADD_HOUSE,
+        payload: house
+    }
+}

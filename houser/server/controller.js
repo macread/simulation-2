@@ -16,4 +16,11 @@ module.exports = {
             .then( ()=> res.status(200).send() )
             .catch( (err)=> res.status(500).send() );
     },
+
+    deleteHouse: (req, res, next)=> {
+        const connection = req.app.get('db');
+        connection.delete_house([req.params.id])
+            .then( ()=> res.status(200).send() )
+            .catch( ()=> res.status(500).send() );
+    },
 }

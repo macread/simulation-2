@@ -10,6 +10,7 @@ class Dashboard extends Component {
         this.state = {
                 houses: []
         }
+        this.deleteHouse = this.deleteHouse.bind(this);
     }
 
     componentDidMount(){
@@ -19,6 +20,12 @@ class Dashboard extends Component {
     getInventory(){
         axios.get('/api/houses').then( results => {
             this.setState({ houses: results.data });
+        });
+    }
+
+    deleteHouse(val){
+        axios.delete(`api/house/${val}`).then( () => {
+            this.getInventory();
         });
     }
 
@@ -39,6 +46,7 @@ class Dashboard extends Component {
                             imgURL={house.imgURL}
                             mortgage={house.mortgage}
                             rent={house.rent}
+                            deleteHouse={this.deleteHouse}
                         />
                     ))}
                 <hr />
