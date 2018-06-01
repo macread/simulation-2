@@ -16,9 +16,9 @@ massive(process.env.CONNECTION_STRING).then(connection => {
 
 app.get('/api/houses',controller.houses);
 
-//   app.get('/api/product/:id',controller.getProduct);
+app.post('/api/house',controller.addHouse);
 
-//   app.post('/api/product',controller.product);
+//   app.get('/api/product/:id',controller.getProduct);
 
 //   app.put('/api/product/:id',controller.updateProduct);
 
