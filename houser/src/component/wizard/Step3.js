@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addMortRent } from '../../ducks/reducer';
 
 class Step3 extends Component {
 
@@ -47,4 +49,13 @@ class Step3 extends Component {
     }
 }
 
-export default (Step3)
+
+function mapStateToProps(state){
+    console.log(state);
+    return {
+        mortgage: state.mortgage,
+        rent: state.rent
+    }
+}
+
+export default connect(mapStateToProps, { addMortRent })(Step3)

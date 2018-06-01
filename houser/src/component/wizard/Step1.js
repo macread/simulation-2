@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { addHouse } from '../../ducks/reducer';
 
 class Step1 extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
             
         this.state = {
             name: '',
@@ -52,7 +52,6 @@ class Step1 extends Component {
 
 
     render() {
-        console.log('this.props',this.props)
         return (
             <div className='Step1'>
                 <p>Location Name:</p><input type='' className='' onChange={ ( e ) => this.updateLocationName( e.target.value ) }/>
@@ -74,7 +73,6 @@ class Step1 extends Component {
 }
 
 function mapStateToProps(state){
-    console.log(state);
     return {
         name: state.name,
         address: state.address,
