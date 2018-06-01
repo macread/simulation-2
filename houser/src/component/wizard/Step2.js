@@ -33,7 +33,7 @@ class Step2 extends Component {
     
         return (
             <div className='Step2'>
-                 <p>Image URL:</p><input type='' className='' onChange={ ( e ) => this.updateImgURL( e.target.value ) }/>
+                 <p>Image URL:</p><input type='' className='' value={this.state.imgURL} onChange={ ( e ) => this.updateImgURL( e.target.value ) }/>
                  <hr />
                  <Link to={'/wizard/step1'}><button>Previous Step</button></Link>
                  <Link to={'/wizard/step3'}><button onClick={()=>this.addIMG()}>Next Step</button></Link>

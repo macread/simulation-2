@@ -44,7 +44,7 @@ class Step1 extends Component {
     }
 
     updateState(val){
-        this.setState({ state: val })
+        this.setState({ st: val })
     }
 
     updateZipCode(val){

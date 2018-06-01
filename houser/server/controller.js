@@ -11,8 +11,8 @@ module.exports = {
     addHouse: (req, res, next)=> {
         console.log(req.body)
         const connection = req.app.get('db');
-        const { name, address, city, state, zip } = req.body;
-        connection.add_house([name, address, city, state, zip])
+        const { name, address, city, state, zip, mortgage, rent } = req.body;
+        connection.add_house([name, address, city, state, zip, mortgage, rent])
             .then( ()=> res.status(200).send() )
             .catch( (err)=> res.status(500).send() );
     },

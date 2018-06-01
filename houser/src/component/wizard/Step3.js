@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addMortRent } from '../../ducks/reducer';
+import { addMortRent, cancel } from '../../ducks/reducer';
 
 class Step3 extends Component {
 
@@ -31,25 +31,29 @@ class Step3 extends Component {
     }
 
     updateRentAmount(val){
-        this.setState({ mortgage: val })
+        this.setState({ rent: val })
     }
         
     addHouse(){
-        let {name, address, city, state, zip } = this.state;
+        let {name, address, city, st, zip, imgURL } = this.props;
         axios.post('/api/house',
         {name: name,
         address: address,
         city: city,
-        state: state,
-        zip: zip}).then(() => this.props.history.push('/'))
+        state: st,
+        zip: zip,
+        imgURL: imgURL,
+        mortgage: this.state.mortgage,
+        rent: this.state.rent
+        }).then(() => this.props.history.push('/')).then(()=> this.props.cancel())
     }
 
     render() {
     
         return (
             <div className='Step3'>
-                 <p>Monthly Mortgage Amount:</p><input type='' className='' onChange={ ( e ) => this.updateMortgateAmount( e.target.value ) }/>
-                 <p>Desired Monthly:</p><input type='' className='' onChange={ ( e ) => this.updateRentAmount( e.target.value ) }/>
+                 <p>Monthly Mortgage Amount:</p><input type='' className='' value={this.state.mortgage} onChange={ ( e ) => this.updateMortgageAmount( e.target.value ) }/>
+                 <p>Desired Monthly:</p><input type='' className='' value={this.state.rent} onChange={ ( e ) => this.updateRentAmount( e.target.value ) }/>
                  <hr />
                  <Link to={'/wizard/step2'}><button>Previous Step</button></Link>
                 <button onClick={()=>this.addHouse()}>Complete</button>
@@ -60,11 +64,16 @@ class Step3 extends Component {
 
 
 function mapStateToProps(state){
-    console.log(state);
     return {
+        name: state.name,
+        address: state.address,
+        city: state.city,
+        st: state.st,
+        zip: state.zip,
+        imgURL: state.imgURL,
         mortgage: state.mortgage,
         rent: state.rent
     }
 }
 
-export default connect(mapStateToProps, { addMortRent })(Step3)
+export default connect(mapStateToProps, { addMortRent, cancel })(Step3)
