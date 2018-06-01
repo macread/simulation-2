@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from './component/header/Header';
-import Dashboard from './component/dashboard/Dashboard';
-import Wizard from './component/wizard/Wizard';
+import route from './route'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <Dashboard />
-        <Wizard />
+        { route }
       </div>
     );
   }
