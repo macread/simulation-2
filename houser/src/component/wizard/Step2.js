@@ -13,6 +13,14 @@ class Step2 extends Component {
             }
     }
     
+    componentDidMount(){
+        if (this.props.imgURL !== '') {
+            this.setState({
+                imgURL: this.props.imgURL
+            })
+        }
+    }
+
     updateImgURL(val){
         this.setState({ imgURL: val })
     }

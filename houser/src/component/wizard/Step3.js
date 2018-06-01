@@ -16,6 +16,15 @@ class Step3 extends Component {
 
             this.addHouse = this.addHouse.bind(this);
     }
+
+    componentDidMount(){
+        if (this.props.mortgage !== 0) {
+            this.setState({
+                mortgage: this.props.mortgage,
+                rent: this.props.rent,
+            })
+        }
+    }
     
     updateMortgageAmount(val){
         this.setState({ mortgage: val })

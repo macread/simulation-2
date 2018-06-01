@@ -1,25 +1,30 @@
 const initialState = {
-    name: 'Default House',
-    address: '1 Default Street',
-    city: 'Default City',
-    st: 'DE',
-    zip: '12345',
-    imgURL: 'default URL',
-    mortgage: 750,
-    rent: 1250
+    name: '',
+    address: '',
+    city: '',
+    st: '',
+    zip: '',
+    imgURL: '',
+    mortgage: 0,
+    rent: 0
 }
 
 const ADD_HOUSE = 'ADD_HOUSE';
 const ADD_IMG_URL = 'ADD_IMG_URL';
 const ADD_MORT_RENT = 'ADD_MORT_RENT';
+const CANCEL = 'CANCEL';
 
 export default function reducer(state = initialState, action ) {
 
     switch (action.type){
 
         case ADD_HOUSE: 
-            let {name, address, city, st, zip } = action.payload;
-            return Object.assign({}, state, {name: name, address: address, city: city, st: st, zip: zip})
+            return Object.assign({}, state, 
+                {name: action.payload.name, 
+                address: action.payload.address, 
+                city: action.payload.city, 
+                st: action.payload.st, 
+                zip: action.payload.zip})
 
         case ADD_IMG_URL:
             return Object.assign({}, state, {imgURL: action.payload}) 
@@ -27,6 +32,17 @@ export default function reducer(state = initialState, action ) {
         case ADD_MORT_RENT:
             let {mortgage, rent} = action.payload;
             return Object.assign({}, state, {mortgage: mortgage, rent: rent})
+
+        case CANCEL:
+            return Object.assign({}, state, 
+                {name: action.payload.name, 
+                address: action.payload.address, 
+                city: action.payload.city, 
+                st: action.payload.st, 
+                zip: action.payload.zip, 
+                imgURL: action.payload.imgURL, 
+                mortgage: action.payload.mortgage, 
+                rent: action.payload.rent})
 
         default:
             return state;
@@ -52,5 +68,12 @@ export function addMortRent(mortRent){
     return {
         type: ADD_MORT_RENT,
         payload: mortRent
+    }
+}
+
+export function cancel(){
+    return{
+        type: CANCEL,
+        payload: initialState
     }
 }
