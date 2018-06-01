@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Step1 extends Component {
     constructor() {
@@ -37,6 +38,7 @@ class Step1 extends Component {
         }
 
     render() {
+        console.log(this.props)
         return (
             <div className='Step1'>
                 <p>Location Name:</p><input type='' className='' onChange={ ( e ) => this.updateLocationName( e.target.value ) }/>
@@ -57,4 +59,14 @@ class Step1 extends Component {
     }
 }
 
-export default (Step1)
+function mapStateToProps(state){
+    return {
+        name: state.name,
+        address: state.address,
+        city: state.city,
+        state: state.state,
+        zip: state.zip
+    }
+}
+
+export default connect(mapStateToProps)(Step1)
